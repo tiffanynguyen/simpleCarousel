@@ -1,0 +1,51 @@
+body {
+  background-color: white;
+  position: relative;
+  font-size: 14px;
+  font-family: arial; }
+  body .carouselContainer {
+    margin: 40px;
+    width: 270px;
+    height: 266px; }
+  body div.images {
+    position: relative;
+    top: 0px;
+    left: 0px; }
+    body div.images div {
+      position: absolute;
+      top: 0px;
+      left: 0px; }
+      body div.images div img {
+        width: 400px;
+        height: 220px; }
+  body div.allImg {
+    position: relative;
+    margin-left: 40%; }
+    body div.allImg div {
+      float: left;
+      margin: 0 5px;
+      font: bold 16px arial;
+      cursor: pointer;
+      background-color: #ccc;
+      color: #000;
+      padding: 10px; }
+      body div.allImg div img {
+        width: 40px;
+        height: 45px; }
+    body div.allImg div.active {
+      background-color: black;
+      color: #000; }
+  body .control {
+    position: absolute;
+    top: 380px;
+    color: #fff;
+    cursor: pointer; }
+  body .prev {
+    left: 120px; }
+  body .next {
+    left: 180px; }
+  body .container-fluid {
+    margin-top: 10%; }
+  body div.carouselIcon {
+    margin-top: 15%;
+    cursor: pointer; }

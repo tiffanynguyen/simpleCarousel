@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Exercise</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3"> </div>
+            <div class="col-sm-1 carouselIcon">
+                <i id="left" class="fa fa-chevron-left next"></i>
+            </div>
+            <div class="col-sm-4 carouselContainer">
+                <div class="images">
+                    <div>
+                        <h4>Title for image 1</h4>
+                        <p>Description of image 1</p>
+                        <img src="images/1.jpg" />
+
+                    </div>
+                    <div>
+                        <h4>Title for image 2</h4>
+                        <p>Description of image 2</p>
+                        <img src="images/2.jpg" />
+
+                    </div>
+                    <div>
+                        <h4>Title for image 3</h4>
+                        <p>Description of image 3</p>
+                        <img src="images/3.jpg" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1 carouselIcon">
+                <i id="right" class="fa fa-chevron-right next"></i>
+            </div>
+            <div class="col-sm-3"> </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 allImg">
+                <div>
+                    <img src="images/1.jpg" />
+                </div>
+                <div>
+                    <img src="images/2.jpg" />
+                </div>
+                <div>
+                    <img src="images/3.jpg" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+        crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/6c02f9023d.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        var imageTrig = $('div.allImg div'); //targeting all div that are descendants divs w/ allImg class 
+        var images = $('div.images div');
+        var lastImg = imageTrig.length - 1;
+        var target;
+
+        imageTrig.first().addClass('active'); //first element of div that holds image
+        images.hide().first().show();
+
+        function carouselResp(target) {
+            images.fadeOut(300).eq(target).fadeIn(300);
+            imageTrig.removeClass('active').eq(target).addClass('active');
+        }
+
+        imageTrig.click(function () {
+            if (!$(this).hasClass('active')) {
+                target = $(this).index();
+                carouselResp(target);
+                resetTimer();
+            }
+        });
+
+        $('.next').click(function () {
+            target = $('div.allImg div.active').index();
+            target === lastImg ? target = 0 : target = target + 1;
+            carouselResp(target);
+            resetTimer();
+        });
+        $('.prev').click(function () {
+            target = $('div.allImg div.active').index();
+            lastImg = imageTrig.length - 1;
+            target === 0 ? target = lastImg : target = target - 1;
+            carouselResp(target);
+            resetTimer();
+        });
+
+        function carouselTiming() {
+            target = $('div.allImg div.active').index();
+            target === lastImg ? target = 0 : target = target + 1;
+            carouselResp(target);
+        }
+
+        var setTimer = setInterval(function () { carouselTiming(); }, 2000);
+
+        function resetTimer() {
+            clearInterval(setTimer);
+            setTimer = setInterval(function () { carouselTiming(); }, 2000);
+        }
+    </script>
+</body>
+
+</html>
